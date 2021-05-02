@@ -24,7 +24,7 @@ namespace GameEngine.Test
             _output.WriteLine($"GameState ID={_gameStateFixture.State.Id}");
         }
 
-        [Fact]
+        [Fact] 
         public void Test4()
         {
             _output.WriteLine($"GameState ID={_gameStateFixture.State.Id}");

@@ -150,5 +150,44 @@ namespace GameEngine.Test
             Assert.PropertyChanged(sut, "Health", () => sut.TakeDamage(10));
         }
 
+        [Fact]
+        public void TakeZeroDamage()
+        {
+            sut.TakeDamage(0);
+            Assert.Equal(100, sut.Health);
+        }
+
+        [Fact]
+        public void TakeSmallDamage()
+        {
+            sut.TakeDamage(1);
+            Assert.Equal(99, sut.Health);
+        }
+
+        [Fact]
+        public void TakeMediumDamage()
+        {
+            sut.TakeDamage(50);
+            Assert.Equal(50, sut.Health);
+        }
+
+        [Fact]
+        public void HaveMinimumHealth()
+        {
+            sut.TakeDamage(101);
+            Assert.Equal(1, sut.Health);
+        }
+
+        //one method to simulate four test
+        [Theory]
+        [InlineData(0,100)]
+        [InlineData(1,99)]
+        [InlineData(50,50)]
+        [InlineData(101,1)]
+        public void TakeDamage(int damage,int expectedHealth)
+        {
+            sut.TakeDamage(damage);
+            Assert.Equal(expectedHealth, sut.Health);
+        }
     }
 }
